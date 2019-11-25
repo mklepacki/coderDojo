@@ -1,3 +1,6 @@
+"""
+This is just a test program to check if set up works
+"""
 import random
 import requests
 
