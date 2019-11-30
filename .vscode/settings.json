@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "coderdojo_venv/bin/python3",
+  "python.pythonPath": "coderdojo_venv/bin/python",
   "files.autoSave": "afterDelay",
   "editor.tabSize": 4
 }
