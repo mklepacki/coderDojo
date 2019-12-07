@@ -23,26 +23,35 @@ def queen_diagonal_attack_1(x1, y1):
     """
     This goes right and down
     """
-    pass
+    return []
+
 def queen_diagonal_attack_2(x1, y1):
     """
     This goes left and down
     """
-    pass
+    return []
+
 def queen_diagonal_attack_3(x1, y1):
     """
     This goes right and up
     """
-    pass
+    return []
+
 def queen_diagonal_attack_4(x1, y1):
     """
     This goes left and up
     """
-    pass
+    return []
 
+def queen_attack(x1, y1):
+    return queen_horizontal_attack(x1, y1) + queen_vertical_attack(x1, y1) + queen_diagonal_attack_1(x1, y1) + queen_diagonal_attack_2(x1,y1) + queen_diagonal_attack_3(x1, y1) + queen_diagonal_attack_4(x1,y1)
 
 def is_queen_attacked(x1, y1, x2, y2):
-    pass
+    """This is main function, that will provide answer to the question """
+    attacked_fields = queen_attack(x1, y1)
+    second_queen_position = [x2, y2]
+    if second_queen_position in attacked_fields:
+        return True
+    return False
 
-
-    
+print(is_queen_attacked(0,0,1,1))
