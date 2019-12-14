@@ -52,14 +52,17 @@ class Deck:
 class Player:
     my_cards = []
 
-    def __init__(self, name):
+    def __init__(self, name, money=1000):
         self.name = name
+        self.money = money
 
     def __str__(self):
-        return 'My name is ' + self.name + ' and my score is ' + str(self.count_score)
+        return 'My name is ' + self.name + ' and my score is ' + str(self.count_score()) + ' and i have ' + str(self.money) + '$' + ' This are my cards ' + str(self.my_cards)
 
     def hit(self, deck):
-        self.my_cards.append(deck.pop())
+        card = deck.pop()
+        print(card)
+        self.my_cards.append(card)
 
     def pass_turn(self):
         pass
@@ -79,7 +82,9 @@ class BlackJackGame:
     
     def __init__(self):
         self.create_players()
-        self.deck = Deck(4)
+        self.dealer = Dealer('Dealer')
+        self.deck = Deck(1)
+        self.deal()
 
     def __str__(self):
         game_description = 'This is our BlackJack game.\n'
@@ -93,8 +98,18 @@ class BlackJackGame:
 
     def create_players(self, num=4):
         for x in range(num):
-            player = Player('Player_'+ str(x+1))
+            player = Player('Player_'+ str(x+1), random.randint(500, 10000))
             self.player_list.append(player)
 
+    def deal(self):
+        for player in self.player_list:
+            print(len(self.deck.get_deck()))
+            player.hit(self.deck.get_deck())
+
 game = BlackJackGame()
-print(game)
+# print(game)
+
+# for player in game.player_list:
+#     print(player.name)
+#     for card in player.my_cards:
+#         print(card)
