@@ -20,7 +20,14 @@ class Card:
         return self.value + ' of ' + self.color
 
     def score(self):
-        return 0
+        score = 0
+        if self.value in ['J', 'Q', 'K']:
+            score = 10
+        elif self.value == 'A':
+            score = 11
+        else:
+            score = int(self.value)
+        return score
 
 class Deck:
     full_deck = []
@@ -68,7 +75,10 @@ class Player:
         pass
 
     def count_score(self):
-        return 0
+        score = 0
+        for card in self.my_cards:
+            score += card.score()
+        return score
 
 class Dealer(Player):
     my_deck =[]
@@ -103,13 +113,14 @@ class BlackJackGame:
 
     def deal(self):
         for player in self.player_list:
-            print(len(self.deck.get_deck()))
             player.hit(self.deck.get_deck())
+
 
 game = BlackJackGame()
 # print(game)
 
-# for player in game.player_list:
-#     print(player.name)
-#     for card in player.my_cards:
-#         print(card)
+for player in game.player_list:
+    print(player.name)
+    print('Score: ' + str(player.count_score()))
+    for card in player.my_cards:
+        print(card)
