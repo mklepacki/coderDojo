@@ -57,18 +57,19 @@ class Deck:
         return self.full_deck
 
 class Player:
-    my_cards = []
-
     def __init__(self, name, money=1000):
         self.name = name
         self.money = money
+        self.my_cards = []
 
     def __str__(self):
-        return 'My name is ' + self.name + ' and my score is ' + str(self.count_score()) + ' and i have ' + str(self.money) + '$' + ' This are my cards ' + str(self.my_cards)
+        return 'My name is ' + self.name + ' and my score is ' + str(self.count_score()) + '````` and i have ' + str(self.money) + '$' + ' This are my cards ' + str(self.my_cards)
 
     def hit(self, deck):
         card = deck.pop()
-        print(card)
+        self.my_cards.append(card)
+
+    def add_card(self, card):
         self.my_cards.append(card)
 
     def pass_turn(self):
@@ -108,17 +109,18 @@ class BlackJackGame:
 
     def create_players(self, num=4):
         for x in range(num):
-            player = Player('Player_'+ str(x+1), random.randint(500, 10000))
-            self.player_list.append(player)
+            self.player_list.append(Player('Player_'+ str(x+1), random.randint(500, 10000)))
 
     def deal(self):
-        for player in self.player_list:
-            player.hit(self.deck.get_deck())
+        for _ in range(2):
+            for player in self.player_list:
+                player.hit(self.deck.get_deck())
 
 
 game = BlackJackGame()
 # print(game)
 
+# This is example thats shows it wordks 
 for player in game.player_list:
     print(player.name)
     print('Score: ' + str(player.count_score()))
