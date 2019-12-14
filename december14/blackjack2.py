@@ -1,3 +1,4 @@
+import random
 # Moze byc dowolna ilosc graczy 
 # Musi byc 1 krupier ktory rozdaje karty
 # krupier dobiera karty ostatni
@@ -18,6 +19,9 @@ class Card:
     def __str__(self):
         return self.value + ' of ' + self.color
 
+    def score(self):
+        return 0
+
 class Deck:
     full_deck = []
     potential_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
@@ -25,20 +29,33 @@ class Deck:
 
     def __init__(self, number_of_decks):
         self.number_of_decks = number_of_decks
+        self.fill_deck()
+    
+    def __str__(self):
+        return str(self.full_deck)
 
     def fill_deck(self):
-        pass
+        for _ in range(self.number_of_decks):
+            for v in self.potential_values:
+                for c in self.potential_colors:
+                    card = Card(v, c)
+                    self.full_deck.append(card)
 
     def shuffle_deck(self):
-        pass
+        self.full_deck = random.shuffle(self.full_deck)
+        return self.full_deck
 
     def get_deck(self):
-        pass
+        return self.full_deck
+
+deck = Deck(1)
+for card in deck.get_deck():
+    print(card)
 
 class Player:
     my_cards = []
 
-    def __init__(self, name)
+    def __init__(self, name):
         self.name = name
 
     def __str__(self):
