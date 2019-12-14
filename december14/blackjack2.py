@@ -30,6 +30,7 @@ class Deck:
     def __init__(self, number_of_decks):
         self.number_of_decks = number_of_decks
         self.fill_deck()
+        self.shuffle_deck(100)
     
     def __str__(self):
         return str(self.full_deck)
@@ -41,16 +42,12 @@ class Deck:
                     card = Card(v, c)
                     self.full_deck.append(card)
 
-    def shuffle_deck(self):
-        self.full_deck = random.shuffle(self.full_deck)
-        return self.full_deck
+    def shuffle_deck(self, num):
+        for _ in range(num):
+            random.shuffle(self.full_deck)
 
     def get_deck(self):
         return self.full_deck
-
-deck = Deck(1)
-for card in deck.get_deck():
-    print(card)
 
 class Player:
     my_cards = []
@@ -61,8 +58,8 @@ class Player:
     def __str__(self):
         return 'My name is ' + self.name + ' and my score is ' + str(self.count_score)
 
-    def hit(self):
-        pass
+    def hit(self, deck):
+        self.my_cards.append(deck.pop())
 
     def pass_turn(self):
         pass
@@ -78,4 +75,26 @@ class Dealer(Player):
 
 
 class BlackJackGame:
-    pass
+    player_list = []
+    
+    def __init__(self):
+        self.create_players()
+        self.deck = Deck(4)
+
+    def __str__(self):
+        game_description = 'This is our BlackJack game.\n'
+        game_description += 'This is list of players:\n'
+        for player in self.player_list:
+            game_description += str(player) + '\n'
+        game_description += 'This is our deck:\n'
+        for card in self.deck.get_deck():
+            game_description += str(card) + '\n'
+        return game_description
+
+    def create_players(self, num=4):
+        for x in range(num):
+            player = Player('Player_'+ str(x+1))
+            self.player_list.append(player)
+
+game = BlackJackGame()
+print(game)
