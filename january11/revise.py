@@ -41,39 +41,41 @@ s = 'Ala ma kota'
 # word = 'Slowo'
 # print(word[0])
 
-#Slicing
-s = '0123456789'
-print(s[1:])
-new_s = s[1:] + s[0] + 'ay'
-print(new_s)
+# #Slicing
+# s = '0123456789'
+# print(s[1:])
+# new_s = s[1:] + s[0] + 'ay'
+# print(new_s)
 
-l = ['a', 'b', 'c', 'd']
-s = 'zzzz'.join(['asd', 'zxc'])
-print(s)
+# l = ['a', 'b', 'c', 'd']
+# s = 'zzzz'.join(['asd', 'zxc'])
+# print(s)
 
 # Given a string of digits, calculate the largest product for a contiguous substring of digits of length n.
 # For example, for the input '1027839564', the largest product for a series of 3 digits is 270 (9 * 5 * 6), and the largest product for a series of 5 digits is 7560 (7 * 8 * 3 * 9 * 5).
 # Note that these series are only required to occupy adjacent positions in the input; the digits need not be numerically consecutive.
 # For the input '73167176531330624919225119674426574742355349194934', the largest product for a series of 6 digits is 23520.
 
-s = '73167176531330624919225119674426574742355349194934'
-lenght = 3
-first = '731' # 7*3*1
-second = '316' # 3*1*6
-third = '167' 
-print(len(s))
-print(s[48])
+digits = '1027839564'
+first = '102'
+second = '027'
+third = '278'
 
-l =[1,2,3,4]
-print(max(l))
-print(min(l))
-import math
-print(math.pi)
-products = []
-for x in range(50):
-    result = 1
-    # tutaj jakis kod
-    for x in list('123'):
-        result *= int(x)
-    products.append(result)
-print(max(products))
+substring = digits[0:3]
+temp_int = 1
+for x in third:
+    temp_int *= int(x)
+# print(temp_int)
+# print(digits[1:4])
+# print(digits[2:5])
+def largest_product(digits, substring_length):
+    products = []
+    for x in range(len(digits)-substring_length+1):
+        substring = digits[x:x+substring_length]
+        substring_multi = 1
+        for i in substring:
+            substring_multi *= int(i)
+        products.append(substring_multi)
+    return max(products)
+
+print(largest_product(digits, 5))    
