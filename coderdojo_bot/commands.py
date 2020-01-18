@@ -1,6 +1,7 @@
 from discord.ext import commands
 from secret import BOT_TOKEN
 import discord
+from helpers import largest_product
 
 bot = commands.Bot(command_prefix='!')
 
@@ -38,4 +39,8 @@ async def display_embed(ctx):
     embed.add_field(name='Field name', value='Field value', inline=True)
     await ctx.send('Hey this is embed', embed=embed)
 
-bot.run(BOT_TOKEN)
+@bot.command()
+async def largest(ctx, digits, substring_length):
+    await ctx.send(largest_product(digits, int(substring_length)))
+
+bot.run('NjY4MDI2NTY5NzMzOTYzNzk2.XiLphg.3BmzRdRzMJT4Ns9sRwxK7O8lC6Y')
