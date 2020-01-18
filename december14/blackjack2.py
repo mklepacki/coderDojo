@@ -63,7 +63,7 @@ class Player:
         self.my_cards = []
 
     def __str__(self):
-        return 'My name is ' + self.name + ' and my score is ' + str(self.count_score()) + '````` and i have ' + str(self.money) + '$' + ' This are my cards ' + str(self.my_cards)
+        return 'My name is ' + self.name + ' and my score is ' + str(self.count_score()) + ' and i have ' + str(self.money) + '$' + ' This are my cards ' + str(self.my_cards)
 
     def hit(self, deck):
         card = deck.pop()
@@ -120,7 +120,7 @@ class BlackJackGame:
 game = BlackJackGame()
 # print(game)
 
-# This is example thats shows it wordks 
+# This is example thats shows it works 
 for player in game.player_list:
     print(player.name)
     print('Score: ' + str(player.count_score()))
