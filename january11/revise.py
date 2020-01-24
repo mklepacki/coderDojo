@@ -61,6 +61,7 @@ first = '102'
 second = '027'
 third = '278'
 
+
 substring = digits[0:3]
 temp_int = 1
 for x in third:
