@@ -9,6 +9,7 @@ For example: input: "cool" output: "looc"
 Odwróć ciąg
 
 Na przykład: input: „cool” output: „looc”
+
 ################################################################
 2. Introduction
 Given a year, report if it is a leap year.
@@ -78,3 +79,123 @@ Zewnętrzny okrąg ma promień 10 jednostek (jest to równoważne z całkowitym 
 
 Napisz funkcję, która podała punkt w celu (zdefiniowana przez jego rzeczywiste współrzędne kartezjańskie X i Y - (X,Y) ), zwraca prawidłową kwotę zarobioną przez rzutkę lądującą w tym punkcie.
 """
+# s = 'cool'
+# print(''.join(reversed(s)))
+# print(s[::-1])
+
+import math
+import random
+
+def count_score(p):
+  # liczyla punkty
+  p1 = Point(0,0)
+  length = points_length(p1, p)
+  if length <=1:
+    return 10
+  elif length <=5:
+    return 5
+  elif length <= 10:
+    return 1
+  else: 
+    return 0
+  
+def points_length(p1, p2):
+  # sprawdza w ktorym jest okregu
+  length = math.sqrt(math.pow(p2.x - p1.x, 2) + math.pow(p2.y - p1.y, 2))
+  return length
+
+
+class Point:
+
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+
+p1 = Point(0,0)
+p2 = Point(10, 10)
+
+def fake_darts_game():
+  players = [0,0,0,0]
+  for x in range(4):
+    for i in range(len(players)):
+      x1 = random.randint(0, 8)
+      y1 = random.randint(0,8)
+      p = Point(x1, y1)
+      score = count_score(p)
+      players[i] += score
+  return players
+
+# counter = 0
+# while True:
+#   score_list = fake_darts_game()
+#   score_list = sorted(score_list)
+#   if score_list[3] == 40:
+#     print('Scored 40', counter)
+#     break
+#   else:
+#     print(counter)
+#     counter += 1
+
+"""
+1 2 3           1 4 7
+4 5 6   => T => 2 5 8
+7 8 9           3 6 9
+"""
+m = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+
+# def transpose(m):
+#   output_m =[]
+#   for x in range(len(m[0])):
+#     output_m.append([])
+#   for x in range(len(m)):
+#     for i in range(len(m[x])):
+#       output_m[x] = m[x][i]
+#   return output_m
+# print(transpose(m))
+a = [1, 2, 3]
+b = [1, 2, 3, 4, 5]
+
+
+def rekurencja(n=49):
+  pass
+
+def oblicz(n):
+    if n==1:
+        return -10
+    return oblicz(n-1)/-2
+# for x in range(1,10):
+#     print(oblicz(x))
+
+
+def zadanie134a(n):
+  if n == 1:
+    return 4
+  return zadanie134a(n-1) + 3
+
+# print(zadanie134a(1))
+# print(zadanie134a(2))
+# print(zadanie134a(3))
+
+def zadanie134e(n):
+  if n == 1:
+    return 3
+  if n%2 == 0:
+    return zadanie134e(n-1) + 2
+  else:
+    return zadanie134e(n-1) - 1
+# print(zadanie134e(1))
+# print(zadanie134e(2))
+# print(zadanie134e(3))
+
+def zadanie135a(n):
+  if n == 1:
+    return 2
+  return 3*zadanie135a(n-1) + 0.5
+# for x in range(1,8):
+#   print(zadanie135a(x))
+
+
